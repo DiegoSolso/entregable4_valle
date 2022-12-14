@@ -6,10 +6,12 @@ Solution = tuple[int, int, int]  # l, r, coste
 
 
 def read_data(f: TextIO) -> list[int]:
-    l = []
+    lista = []
     for linea in f:
-        l.append(int(linea))
-    return l
+        if linea.strip():
+            n = int(linea)
+            lista.append(n)
+    return lista
 
 
 def process(v: list[int]) -> Solution:
@@ -30,7 +32,7 @@ def calcula_picos(v: list[int]) -> list[int]:
     picos = []
 
     for i in range(1, len(v), 1):
-        if list[i] > list[aux]:
+        if v[i] > v[aux]:
             creciendo = True
         else:
             if creciendo:
@@ -88,7 +90,7 @@ def calcula_valle(l: int, r: int, v: list[int]) -> Solution:
 
 
 def show_results(sol: Solution):
-    print(sol[0] + " " + sol[1] + " " + sol[2])
+    print(f"{sol[0]} {sol[1]} {sol[2]}")
 
 
 if __name__ == "__main__":
