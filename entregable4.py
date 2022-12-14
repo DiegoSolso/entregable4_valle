@@ -19,7 +19,7 @@ def process(v: list[int]) -> Solution:
     picos = limpia_picos (picos, v)
     solucion = (0, 1, 0)
     for i in range (1, len(picos), 1):
-        aux = calcula_valle(i-1, i, v)
+        aux = calcula_valle(picos[i-1], picos[i], v)
         if aux[2] > solucion[2]:
             solucion = aux
 
@@ -59,7 +59,7 @@ def limpia_picos(picos: list[int], v: list[int]) -> list[int]:
         for i in range(aux + 2, len(picos), 1):
             if v[picos[i]] > v[picos[maximo]]:
                 maximo = i
-        picos_limpios.append(maximo)
+        picos_limpios.append(picos[maximo])
         aux = maximo
 
     return picos_limpios
@@ -75,11 +75,11 @@ def calcula_valle(l: int, r: int, v: list[int]) -> Solution:
         min = l
 
     if l_mayor:
-        while v[l] > v[r]:
+        while v[l] >= v[r]:
             l += 1
         l -= 1
     else:
-        while v[r] > v[l]:
+        while v[r] >= v[l]:
             r -= 1
         r += 1
 
