@@ -52,6 +52,13 @@ def limpia_picos(picos: list[int], v: list[int]) -> list[int]:
             picos_limpios.append(picos[i])
             aux = i
 
+    while aux != len(picos)-1:
+        maximo = aux + 1
+        for i in range(aux + 2, len(picos), 1):
+            if v[picos[i]] > v[picos[maximo]]:
+                maximo = i
+        picos_limpios.append(maximo)
+        aux = maximo
 
     return picos_limpios
 
